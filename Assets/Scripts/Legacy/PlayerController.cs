@@ -5,13 +5,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Player Movement")]
-    [SerializeField] private float _playerSpeed;
-    [SerializeField] private float _sprintMultiplier;
-    [SerializeField] private float _turnSpeed;
+    [SerializeField] private float _playerSpeed;//
+    [SerializeField] private float _sprintMultiplier;//
+    [SerializeField] private float _turnSpeed;//
     [SerializeField] private Transform _cameraTransform;
-    [SerializeField] private bool _invertMouse;
-    [SerializeField] private float _jumpVelocity;
-    [SerializeField] private float _gravity = -9.81f;
+    [SerializeField] private bool _invertMouse;//
+    [SerializeField] private float _jumpVelocity;//
+    [SerializeField] private float _gravity = -9.81f;//
 
     [Header("Shooting")]
     [SerializeField] private Rigidbody _bulletPrefab;
@@ -19,9 +19,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _shootForce;
 
     [Header("Ground Check")]
-    [SerializeField] private Transform _groundCheck;
-    [SerializeField] private LayerMask _groundMask;
-    [SerializeField] private float _groundCheckDistance;
+    [SerializeField] private Transform _groundCheck;//
+    [SerializeField] private LayerMask _groundMask;//
+    [SerializeField] private float _groundCheckDistance;//
 
     [Header("Interactable")]
     [SerializeField] private LayerMask _buttonLayer;
@@ -32,13 +32,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _pickUpDistance;
     [SerializeField] private Transform _attachPoint;
 
-    private CharacterController _characterController;
-    private float _horizontal, _vertical;
-    private float _mouseX, _mouseY;
-    private float _cameraRotationX;
-    private float _moveMultiplier = 1.0f;
-    private Vector3 _playerVelocity;
-    private bool _isGrounded;
+    private CharacterController _characterController;//
+    private float _horizontal, _vertical;//
+    private float _mouseX, _mouseY;//
+    private float _cameraRotationX;//
+    private float _moveMultiplier = 1.0f;//
+    private Vector3 _playerVelocity;//
+    private bool _isGrounded;//
     private bool _isPicked;
     private Camera _mainCamera;
     private RaycastHit _rayCastHit;
@@ -52,8 +52,8 @@ public class PlayerController : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
 
         //Hides mouse cursor
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;//
+        Cursor.visible = false;//
     }
 
     // Update is called once per frame
@@ -72,38 +72,38 @@ public class PlayerController : MonoBehaviour
 
     private void GetInput()
     {
-        _horizontal = Input.GetAxis("Horizontal");
-        _vertical = Input.GetAxis("Vertical");
-        _mouseX = Input.GetAxis("Mouse X");
-        _mouseY = Input.GetAxis("Mouse Y");
+        _horizontal = Input.GetAxis("Horizontal");//
+        _vertical = Input.GetAxis("Vertical");//
+        _mouseX = Input.GetAxis("Mouse X");//
+        _mouseY = Input.GetAxis("Mouse Y");//
 
         _moveMultiplier = Input.GetButton("Fire3") ? _sprintMultiplier : 1.0f;
     }
 
     private void MovePlayer()
     {
-        _characterController.Move((transform.forward * _vertical + transform.right * _horizontal) * _playerSpeed * Time.deltaTime * _moveMultiplier);
+        _characterController.Move((transform.forward * _vertical + transform.right * _horizontal) * _playerSpeed * Time.deltaTime * _moveMultiplier);//
 
         // Ground check
-        if (_isGrounded && _playerVelocity.y < 0)
+        if (_isGrounded && _playerVelocity.y < 0)//
         {
-            _playerVelocity.y = -2.0f;
+            _playerVelocity.y = -2.0f;//
         }
 
-        _playerVelocity.y += _gravity * Time.deltaTime;
-        _characterController.Move(_playerVelocity * Time.deltaTime);
+        _playerVelocity.y += _gravity * Time.deltaTime;//
+        _characterController.Move(_playerVelocity * Time.deltaTime);//
     }
     
     private void RotatePlayer()
     {
         // Turn player
-        transform.Rotate(Vector3.up * _turnSpeed * Time.deltaTime * _mouseX);
+        transform.Rotate(Vector3.up * _turnSpeed * Time.deltaTime * _mouseX);//
 
         // Camera up and down
-        _cameraRotationX += Time.deltaTime * _mouseY * _turnSpeed * (_invertMouse ? 1 : -1);
-        _cameraRotationX = Mathf.Clamp(_cameraRotationX, -85.0f, 85.0f);
+        _cameraRotationX += Time.deltaTime * _mouseY * _turnSpeed * (_invertMouse ? 1 : -1);//
+        _cameraRotationX = Mathf.Clamp(_cameraRotationX, -85.0f, 85.0f);//
 
-        _cameraTransform.localRotation = Quaternion.Euler(_cameraRotationX, 0, 0);
+        _cameraTransform.localRotation = Quaternion.Euler(_cameraRotationX, 0, 0);//
     }
 
     private void GroundCheck()

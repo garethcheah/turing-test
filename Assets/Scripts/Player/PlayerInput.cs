@@ -6,6 +6,8 @@ using UnityEngine;
 [DefaultExecutionOrder(-100)]
 public class PlayerInput : MonoBehaviour
 {
+    public static PlayerInput instance;
+
     private bool _clear;
 
     public float Horizontal { get; private set; }
@@ -26,6 +28,14 @@ public class PlayerInput : MonoBehaviour
 
     public bool SecondaryShootPressed { get; private set; }
 
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
     // Update is called once per frame
     private void Update()
     {
@@ -45,11 +55,11 @@ public class PlayerInput : MonoBehaviour
         MouseX = Input.GetAxis("Mouse X");
         MouseY = Input.GetAxis("Mouse Y");
 
-        SprintHeld = SprintHeld || Input.GetButton("Fire3");
-        JumpPressed = JumpPressed || Input.GetButtonDown("Jump");
-        InteractPressed = InteractPressed || Input.GetKeyDown(KeyCode.F);
-        PrimaryShootPressed = PrimaryShootPressed || Input.GetButtonDown("Fire1");
-        SecondaryShootPressed = SecondaryShootPressed || Input.GetButtonDown("Fire2");
+        SprintHeld = Input.GetButton("Fire3");
+        JumpPressed = Input.GetButtonDown("Jump");
+        InteractPressed = Input.GetKeyDown(KeyCode.F);
+        PrimaryShootPressed = Input.GetButtonDown("Fire1");
+        SecondaryShootPressed = Input.GetButtonDown("Fire2");
     }
 
     private void ClearInputs()

@@ -29,14 +29,9 @@ public class PushButton : MonoBehaviour, ISelectable
         OnPush?.Invoke();
     }
 
-    public void ActivateLiftUp()
+    public void ActivateLift()
     {
-        _platformAnimator.SetBool("isActive", true);
-    }
-
-    public void ActivateLiftDown()
-    {
-        _platformAnimator.SetBool("isActive", false);
+        _platformAnimator.SetBool("isActive", !_platformAnimator.GetBool("isActive"));
     }
 
     private void Start()

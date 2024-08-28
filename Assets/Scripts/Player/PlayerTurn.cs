@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerTurn : MonoBehaviour
 {
-    [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private float _turnSpeed;
 
     // Update is called once per frame
@@ -16,6 +15,6 @@ public class PlayerTurn : MonoBehaviour
     private void RotatePlayer()
     {
         // Turn player
-        transform.Rotate(Vector3.up * _turnSpeed * Time.deltaTime * _playerInput.MouseX);
+        transform.Rotate(Vector3.up * _turnSpeed * Time.deltaTime * PlayerInput.instance.MouseX);
     }
 }

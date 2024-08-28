@@ -105,7 +105,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e0f566c1c5178540aac2d64c5ee0658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerInput: {fileID: 5255745226413156134}
   _turnSpeed: 100
   _invertMouse: 0
 --- !u!1 &1707135138342559605
@@ -273,7 +272,11 @@ GameObject:
   - component: {fileID: 3767494822156926320}
   - component: {fileID: 3094140805514306991}
   - component: {fileID: 2368639654038065627}
-  m_Layer: 0
+  - component: {fileID: 4703844071457043046}
+  - component: {fileID: 2375908503686532263}
+  - component: {fileID: 6372256585387422399}
+  - component: {fileID: 3653197161322129347}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -413,14 +416,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a375f481218d124f94b071661ba0862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerInput: {fileID: 5255745226413156134}
   _playerSpeed: 2.5
   _sprintMultiplier: 4
   _gravity: -9.81
   _groundCheck: {fileID: 5200366175826812986}
   _groundMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 8
   _groundCheckDistance: 1
 --- !u!114 &3094140805514306991
 MonoBehaviour:
@@ -434,7 +436,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0e40a303fa878b42ac37286e23ecd30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerInput: {fileID: 5255745226413156134}
   _turnSpeed: 100
 --- !u!114 &2368639654038065627
 MonoBehaviour:
@@ -448,8 +449,77 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6d9dfa91e29f894d87af53b7ecf84db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: {fileID: 5255745226413156134}
+  _playerMovement: {fileID: 3767494822156926320}
   _jumpVelocity: 7
+--- !u!114 &4703844071457043046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2977948071133330923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60b5e15fd6bff4e46a87e0f5f4b09322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraTransform: {fileID: 2111257922005340627}
+  _inputType: 0
+  _bulletPool: {fileID: 6372256585387422399}
+  _bulletSpawnPoint: {fileID: 6372961823174469831}
+  _shootForce: 10
+  _playerMovement: {fileID: 3767494822156926320}
+--- !u!114 &2375908503686532263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2977948071133330923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 151b3d561cb60cc45979e5976fa5d662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mainCamera: {fileID: 4258759901590793954}
+  _interationMask:
+    serializedVersion: 2
+    m_Bits: 128
+  _interactionDistance: 2
+--- !u!114 &6372256585387422399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2977948071133330923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2bd7c6e9c2e59d40a11ac58ff24f7fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToPool: {fileID: 8469043919521587700, guid: f1f5146c20f64af46b837c0227655bd4, type: 3}
+  startSize: 0
+  _objectPool: []
+  _usedPool: []
+--- !u!114 &3653197161322129347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2977948071133330923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 248f0da9fbc113042a58ba502a4b56dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mainCamera: {fileID: 4258759901590793954}
+  _pickUpMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _pickUpDistance: 2
+  _attachPoint: {fileID: 1362348208610846226}
 --- !u!1 &4837185103463533099
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,7 +694,7 @@ Transform:
   m_GameObject: {fileID: 7694655549764883009}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.03, y: -1.007, z: 0}
+  m_LocalPosition: {x: -0.03, y: -0.901, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -5,8 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private PlayerInput _playerInput;
-
     [Header("Player Movement")]
     [SerializeField] private float _playerSpeed;
     [SerializeField] private float _sprintMultiplier;
@@ -30,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float GetForwardSpeed()
     {
-        return _playerInput.Vertical * _playerSpeed * _speedMultiplier;
+        return PlayerInput.instance.Vertical * _playerSpeed * _speedMultiplier;
     }
 
     // Start is called before the first frame update
@@ -48,9 +46,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        _speedMultiplier = _playerInput.SprintHeld ? _sprintMultiplier : 1.0f;
+        _speedMultiplier = PlayerInput.instance.SprintHeld ? _sprintMultiplier : 1.0f;
 
-        _characterController.Move((transform.forward * _playerInput.Vertical + transform.right * _playerInput.Horizontal) * _playerSpeed * Time.deltaTime * _speedMultiplier);
+        _characterController.Move((transform.forward * PlayerInput.instance.Vertical + transform.right * PlayerInput.instance.Horizontal) * _playerSpeed * Time.deltaTime * _speedMultiplier);
 
         // Ground check
         if (IsGrounded && _playerVelocity.y < 0)

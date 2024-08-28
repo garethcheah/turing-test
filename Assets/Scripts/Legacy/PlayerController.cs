@@ -14,9 +14,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _gravity = -9.81f;//
 
     [Header("Shooting")]
-    [SerializeField] private Rigidbody _bulletPrefab;
-    [SerializeField] private Transform _bulletSpawnPoint;
-    [SerializeField] private float _shootForce;
+    [SerializeField] private Rigidbody _bulletPrefab;//
+    [SerializeField] private Transform _bulletSpawnPoint;//
+    [SerializeField] private float _shootForce;//
 
     [Header("Ground Check")]
     [SerializeField] private Transform _groundCheck;//
@@ -24,8 +24,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _groundCheckDistance;//
 
     [Header("Interactable")]
-    [SerializeField] private LayerMask _buttonLayer;
-    [SerializeField] private float _rayCastDistance;
+    [SerializeField] private LayerMask _buttonLayer;//
+    [SerializeField] private float _rayCastDistance;//
 
     [Header("Selectable")]
     [SerializeField] private LayerMask _pickUpLayer;
@@ -40,9 +40,9 @@ public class PlayerController : MonoBehaviour
     private Vector3 _playerVelocity;//
     private bool _isGrounded;//
     private bool _isPicked;
-    private Camera _mainCamera;
-    private RaycastHit _rayCastHit;
-    private ISelectable _selectable;
+    private Camera _mainCamera;//
+    private RaycastHit _rayCastHit;//
+    private ISelectable _selectable;//
     private IPickable _pickable;
 
     // Start is called before the first frame update
@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
         _mouseX = Input.GetAxis("Mouse X");//
         _mouseY = Input.GetAxis("Mouse Y");//
 
-        _moveMultiplier = Input.GetButton("Fire3") ? _sprintMultiplier : 1.0f;
+        _moveMultiplier = Input.GetButton("Fire3") ? _sprintMultiplier : 1.0f;//
     }
 
     private void MovePlayer()
@@ -108,51 +108,51 @@ public class PlayerController : MonoBehaviour
 
     private void GroundCheck()
     {
-        _isGrounded = Physics.CheckSphere(_groundCheck.position, _groundCheckDistance, _groundMask);
+        _isGrounded = Physics.CheckSphere(_groundCheck.position, _groundCheckDistance, _groundMask);//
     }
 
     private void JumpCheck()
     {
-        if (Input.GetButtonDown("Jump") && _isGrounded)
+        if (Input.GetButtonDown("Jump") && _isGrounded)//
         {
-            _playerVelocity.y = _jumpVelocity;
+            _playerVelocity.y = _jumpVelocity;//
         }
     }
 
     private void ShootBullet()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1"))//
         {
-            Rigidbody bullet = Instantiate(_bulletPrefab, _bulletSpawnPoint.position, _bulletSpawnPoint.rotation);
-            bullet.AddForce(_cameraTransform.forward * _shootForce, ForceMode.Impulse);
-            Destroy(bullet.gameObject, 5.0f);
+            Rigidbody bullet = Instantiate(_bulletPrefab, _bulletSpawnPoint.position, _bulletSpawnPoint.rotation);//
+            bullet.AddForce(_cameraTransform.forward * _shootForce, ForceMode.Impulse);//
+            Destroy(bullet.gameObject, 5.0f);//
         }
     }
 
     private void Interact()
     {
-        Ray ray = _mainCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+        Ray ray = _mainCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));//
 
-        if (Physics.Raycast(ray, out _rayCastHit, _rayCastDistance, _buttonLayer))
+        if (Physics.Raycast(ray, out _rayCastHit, _rayCastDistance, _buttonLayer))//
         {
             // Temporarily hold last ray cast
-            _selectable = _rayCastHit.transform.GetComponent<ISelectable>();
+            _selectable = _rayCastHit.transform.GetComponent<ISelectable>();//
 
-            if (_selectable != null)
+            if (_selectable != null)//
             {
-                _selectable.OnHoverEnter();
+                _selectable.OnHoverEnter();//
 
-                if (Input.GetKeyDown(KeyCode.F))
+                if (Input.GetKeyDown(KeyCode.F))//
                 {
-                    _selectable.OnSelect();
+                    _selectable.OnSelect();//
                 }
             }
         }
 
-        if (_rayCastHit.transform == null && _selectable != null)
+        if (_rayCastHit.transform == null && _selectable != null)//
         {
-            _selectable.OnHoverExit();
-            _selectable = null;
+            _selectable.OnHoverExit();//
+            _selectable = null;//
         }
     }
 

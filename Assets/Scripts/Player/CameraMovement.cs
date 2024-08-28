@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    [SerializeField] private PlayerInput _playerInput;
-
     [Header("Player Turn")]
     [SerializeField] private float _turnSpeed;
     [SerializeField] private bool _invertMouse;
@@ -31,7 +29,7 @@ public class CameraMovement : MonoBehaviour
     private void RotateCamera()
     {
         // Camera up and down
-        _cameraRotationX += Time.deltaTime * _playerInput.MouseY * _turnSpeed * (_invertMouse ? 1 : -1);
+        _cameraRotationX += Time.deltaTime * PlayerInput.instance.MouseY * _turnSpeed * (_invertMouse ? 1 : -1);
         _cameraRotationX = Mathf.Clamp(_cameraRotationX, -85.0f, 85.0f);
 
         transform.localRotation = Quaternion.Euler(_cameraRotationX, 0, 0);

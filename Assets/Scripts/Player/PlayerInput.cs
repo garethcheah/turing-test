@@ -4,7 +4,7 @@ using UnityEngine;
 
 // Execute this before all other scripts
 [DefaultExecutionOrder(-100)]
-public class PlayerInput : MonoBehaviour
+public class PlayerInput : MonoBehaviour //Singleton
 {
     public static PlayerInput instance;
 
@@ -27,6 +27,10 @@ public class PlayerInput : MonoBehaviour
     public bool PrimaryShootPressed { get; private set; }
 
     public bool SecondaryShootPressed { get; private set; }
+
+    public bool Weapon1Pressed { get; private set; }
+
+    public bool Weapon2Pressed { get; private set; }
 
     private void Awake()
     {
@@ -60,6 +64,9 @@ public class PlayerInput : MonoBehaviour
         InteractPressed = Input.GetKeyDown(KeyCode.F);
         PrimaryShootPressed = Input.GetButtonDown("Fire1");
         SecondaryShootPressed = Input.GetButtonDown("Fire2");
+
+        Weapon1Pressed = Input.GetKeyDown(KeyCode.Alpha1);
+        Weapon2Pressed = Input.GetKeyDown(KeyCode.Alpha2);
     }
 
     private void ClearInputs()
@@ -77,5 +84,7 @@ public class PlayerInput : MonoBehaviour
         InteractPressed = false;
         PrimaryShootPressed = false;
         SecondaryShootPressed = false;
+        Weapon1Pressed = false;
+        Weapon2Pressed = false;
     }
 }

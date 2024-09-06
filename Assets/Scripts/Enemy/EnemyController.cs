@@ -5,13 +5,13 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    public Transform[] _targetPoints;
-    public Transform _enemy;
-    public Transform _player;
-    public NavMeshAgent _agent;
-    public float _playerCheckDistance;
-    public float _checkRadius = 0.4f;
-    public float _aggroDistance;
+    public Transform[] targetPoints;
+    public Transform enemy;
+    public Transform player;
+    public NavMeshAgent agent;
+    public float playerCheckDistance;
+    public float checkRadius = 0.4f;
+    public float aggroDistance;
 
     private EnemyState _currentState;
 
@@ -25,7 +25,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        _agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
         _currentState = new EnemyIdle(this);
         _currentState.OnStateEnter();
     }
@@ -39,8 +39,8 @@ public class EnemyController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(_enemy.position, _checkRadius);
-        Gizmos.DrawWireSphere(_enemy.position + _enemy.forward * _playerCheckDistance, _checkRadius);
-        Gizmos.DrawLine(_enemy.position, _enemy.position + _enemy.forward * _playerCheckDistance);
+        Gizmos.DrawWireSphere(enemy.position, checkRadius);
+        Gizmos.DrawWireSphere(enemy.position + enemy.forward * playerCheckDistance, checkRadius);
+        Gizmos.DrawLine(enemy.position, enemy.position + enemy.forward * playerCheckDistance);
     }
 }

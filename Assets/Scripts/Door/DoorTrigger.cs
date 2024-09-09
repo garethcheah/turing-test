@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DoorTrigger : MonoBehaviour
 {
+    [SerializeField] private DoorLockIndicator _doorLockIndicator;
+
     private Animator _doorAnimator;
 
     // Start is called before the first frame update
@@ -20,7 +22,7 @@ public class DoorTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !_doorLockIndicator.IsDoorLocked())
         {
             _doorAnimator.SetBool("isOpening", true);
         }
@@ -28,7 +30,7 @@ public class DoorTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !_doorLockIndicator.IsDoorLocked())
         {
             _doorAnimator.SetBool("isOpening", false);
         }

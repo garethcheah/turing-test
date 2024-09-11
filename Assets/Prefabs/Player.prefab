@@ -277,6 +277,8 @@ GameObject:
   - component: {fileID: 6372256585387422399}
   - component: {fileID: 5072594453999700525}
   - component: {fileID: 3653197161322129347}
+  - component: {fileID: 6761770702926719458}
+  - component: {fileID: 8379765978189591112}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -292,7 +294,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2977948071133330923}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7978863, z: -0, w: 0.602808}
+  m_LocalRotation: {x: 0, y: 0.79788387, z: 0, w: 0.6028112}
   m_LocalPosition: {x: -2.24, y: 1, z: 0.21263182}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -472,7 +474,7 @@ MonoBehaviour:
   _cameraTransform: {fileID: 2111257922005340627}
   _inputType: 0
   _bulletSpawnPoint: {fileID: 6372961823174469831}
-  _shootForce: 10
+  _shootForce: 20
   _playerMovement: {fileID: 3767494822156926320}
 --- !u!114 &2375908503686532263
 MonoBehaviour:
@@ -504,7 +506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToPool: {fileID: 8469043919521587700, guid: f1f5146c20f64af46b837c0227655bd4, type: 3}
-  startSize: 0
+  startSize: 6
   _objectPool: []
   _usedPool: []
 --- !u!114 &5072594453999700525
@@ -541,6 +543,34 @@ MonoBehaviour:
     m_Bits: 256
   _pickUpDistance: 2
   _attachPoint: {fileID: 1362348208610846226}
+--- !u!114 &6761770702926719458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2977948071133330923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb240b5d014b96344959b8980b5eea04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+--- !u!114 &8379765978189591112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2977948071133330923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c8e69c2a51a2924f8a39be534997857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _agent: {fileID: 0}
+  _pointerPrefab: {fileID: 5154495149758607218, guid: 9f5dea94d0c214a4c87019a8354b1756, type: 3}
+  _camera: {fileID: 4258759901590793954}
 --- !u!1 &4837185103463533099
 GameObject:
   m_ObjectHideFlags: 0

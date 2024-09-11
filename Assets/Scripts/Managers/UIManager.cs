@@ -37,7 +37,7 @@ public class UIManager : MonoBehaviour
 
     private void OnHealthUpdate(float value)
     {
-        textHealth.text = "Health: " + Mathf.Floor(value).ToString();
+        textHealth.text = $"Health: {Mathf.Floor(value).ToString()}";
     }
 
     private void OnDeath()

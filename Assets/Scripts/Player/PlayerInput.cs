@@ -32,6 +32,8 @@ public class PlayerInput : MonoBehaviour //Singleton
 
     public bool Weapon2Pressed { get; private set; }
 
+    public bool CommandPressed { get; private set; }
+
     private void Awake()
     {
         if (instance == null)
@@ -67,6 +69,8 @@ public class PlayerInput : MonoBehaviour //Singleton
 
         Weapon1Pressed = Input.GetKeyDown(KeyCode.Alpha1);
         Weapon2Pressed = Input.GetKeyDown(KeyCode.Alpha2);
+
+        CommandPressed = Input.GetKeyDown(KeyCode.G);
     }
 
     private void ClearInputs()
@@ -86,5 +90,6 @@ public class PlayerInput : MonoBehaviour //Singleton
         SecondaryShootPressed = false;
         Weapon1Pressed = false;
         Weapon2Pressed = false;
+        CommandPressed = false;
     }
 }

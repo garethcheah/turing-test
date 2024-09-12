@@ -27,12 +27,15 @@ public class PlayerHealth : MonoBehaviour
             _health = 0;
         }
 
-        OnHealthUpdate(_health);
+        if (OnHealthUpdate != null)
+            OnHealthUpdate(_health);
     }
 
     private void Start()
     {
         _health = _maxHealth;
-        OnHealthUpdate(_maxHealth);
+
+        if (OnHealthUpdate != null)
+            OnHealthUpdate(_health);
     }
 }

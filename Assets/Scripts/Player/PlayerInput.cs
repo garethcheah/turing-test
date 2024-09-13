@@ -4,7 +4,7 @@ using UnityEngine;
 
 // Execute this before all other scripts
 [DefaultExecutionOrder(-100)]
-public class PlayerInput : MonoBehaviour //Singleton
+public class PlayerInput : MonoBehaviour // Singleton
 {
     public static PlayerInput instance;
 
